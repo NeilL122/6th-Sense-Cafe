@@ -1,0 +1,7 @@
+{
+  "name": "6th Sense Cafe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
