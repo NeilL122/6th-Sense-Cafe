@@ -13,6 +13,9 @@
 
   <ion-list>
     <ion-item *ngFor="let item of cart">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image" />
+      </ion-thumbnail>
       <ion-label>{{ item.name }}</ion-label>
       <ion-note slot="end">${{ item.price }}</ion-note>
     </ion-item>

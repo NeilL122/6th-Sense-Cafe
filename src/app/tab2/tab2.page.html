@@ -25,33 +25,42 @@
   <ion-list>
 
     <!-- Coffee Drinks -->
-    <ion-list-header>
+    <ion-list-header class="menu-header">
       <ion-label>Coffee Drinks</ion-label>
     </ion-list-header>
 
     <ion-item *ngFor="let coffee of coffeeDrinks">
+      <ion-thumbnail slot="start">
+        <img [src]="coffee.image" />
+      </ion-thumbnail>
       <ion-label>{{ coffee.name }}</ion-label>
       <ion-note slot="end">${{ coffee.price }}</ion-note>
       <ion-button color="warning" slot="end" size="small" (click)="addToCart(coffee)">Add to Cart</ion-button>
     </ion-item>
 
     <!-- Food -->
-    <ion-list-header>
+    <ion-list-header class="menu-header">
       <ion-label>Food</ion-label>
     </ion-list-header>
 
     <ion-item *ngFor="let food of foodItems">
+      <ion-thumbnail slot="start">
+        <img [src]="food.image" />
+      </ion-thumbnail>
       <ion-label>{{ food.name }}</ion-label>
       <ion-note slot="end">${{ food.price }}</ion-note>
       <ion-button color="warning" slot="end" size="small" (click)="addToCart(food)">Add to Cart</ion-button>
     </ion-item>
 
     <!-- Other Beverages -->
-    <ion-list-header>
+    <ion-list-header class="menu-header">
       <ion-label>Other Beverages</ion-label>
     </ion-list-header>
 
     <ion-item *ngFor="let beverage of beverages">
+      <ion-thumbnail slot="start">
+        <img [src]="beverage.image" />
+      </ion-thumbnail>
       <ion-label>{{ beverage.name }}</ion-label>
       <ion-note slot="end">${{ beverage.price }}</ion-note>
       <ion-button color="warning" slot="end" size="small" (click)="addToCart(beverage)">Add to Cart</ion-button>
