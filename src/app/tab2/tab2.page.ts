@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-tab2',
@@ -36,13 +37,31 @@ beverages = [
   { name: 'Bottled Water', price: 1.50 },
   { name: 'Smoothies', price: 4.50 }
 ];
-  cart: any;
+    cart: any[] = [];
+  total: number = 0;
 
-  constructor() {}
+  constructor(private storage: Storage) {
+    this.initStorage();
+  }
 
-    addToCart(item: any) {
+  async initStorage() {
+    await this.storage.create();
+    const savedCart = await this.storage['get']('cart');
+    if (savedCart) {
+      this.cart = savedCart;
+      this.calculateTotal();
+    }
+  }
+
+  addToCart(item: any) {
     this.cart.push(item);
+    this.calculateTotal();
+    this.storage['set']('cart', this.cart); 
     console.log('Added to cart:', item);
+  }
+
+  calculateTotal() {
+    this.total = this.cart.reduce((acc, item) => acc + item.price, 0);
   }
 
 }

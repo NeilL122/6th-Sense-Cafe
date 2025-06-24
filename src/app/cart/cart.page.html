@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+    <ion-title>My Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of cart">
+      <ion-label>{{ item.name }}</ion-label>
+      <ion-note slot="end">${{ item.price }}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-item lines="full">
+    <ion-label><strong>Total</strong></ion-label>
+    <ion-note slot="end"><strong>${{ total }}</strong></ion-note>
+  </ion-item>
+
+  <ion-button expand="block" color="danger" (click)="clearCart()">
+    Clear Cart
+  </ion-button>
+</ion-content>
