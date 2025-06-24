@@ -8,11 +8,9 @@
   margin: 0 auto;
 }
 
-.jumbotron,
-.about-us,
-.specials {
+.jumbotron {
   flex: 1;
-  background-color: #d2c265;
+//   background-color: #d2c265;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -46,9 +44,9 @@
   }
 }
 
-ion-content {
-  --background: #fbec96; 
-}
+// ion-content {
+//   --background: #fbec96; 
+// }
 
 ion-header {
   background-color: #d6c564 !important;

@@ -1,18 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-    </ion-title>
-    <img src="assets/6th Sense Cafe Info.jpg" alt="Logo" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; display: block;">
   </ion-toolbar>
+  <img src="assets/6th Sense Cafe Info.jpg" alt="Logo" style="width: 200px; height: 200px; margin-left: auto; margin-right: auto; display: block;">
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Info Page</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>About Us</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Welcome to 6th Sense Cafe, your neighborhood spot for the freshest coffee and cozy vibes. We pride ourselves on sourcing the finest beans and crafting each cup with love.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon slot="start" name="location-outline"></ion-icon>
+      <ion-label>
+        <h2>Location</h2>
+        <p>123 Edmonton, Alberta</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" name="time-outline"></ion-icon>
+      <ion-label>
+        <h2>Opening Hours</h2>
+        <p>Mon - Fri: 7am - 7pm</p>
+        <p>Sat - Sun: 8am - 5pm</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button href="tel:+1234567890">
+      <ion-icon slot="start" name="call-outline"></ion-icon>
+      <ion-label>
+        <h2>Contact</h2>
+        <p>+1 (234) 567-890</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+      <ion-label>
+        <h2>Email</h2>
+        <p>contact 6thsensecafe.com</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 
 

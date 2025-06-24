@@ -23,28 +23,38 @@
     <!-- <ion-button (click)="logout()">Logout</ion-button> -->
   </ion-header>
 
-  <div class="main-container">
-    <div class="jumbotron">
-      <h2>Welcome to 6th Sense Cafe!</h2>
-      <button class="menu-button" routerLink="/tabs/tab2">
-        View Our Menu!
-      </button>
-    </div>
-
-    <div class="about-us">
-      <h2>About Us</h2>
-      <p>
-        At 6th Sense Cafe, we believe in the power of community and the joy of
-        sharing a great cup of coffee! For more information about us, visit our
-        Information page to learn more.
-      </p>
-    </div>
-
-    <!-- <div class="specials">
-    <h2>Today's Specials</h2>
-    <p>
-      Check out our daily specials and seasonal offerings! Visit our Menu page to see what's brewing today.
-    </p>
-   </div> -->
+  <div class="jumbotron">
+    <h1>Welcome to 6th Sense Cafe</h1>
+    <p>Your cozy neighborhood spot for the freshest coffee and tasty treats.</p>
+    <ion-button color="warning" routerLink="/tabs/tab3"> Learn More </ion-button>
   </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-img src="assets/Coffee.avif" alt="Fresh Coffee"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Fresh Coffee</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            We serve handcrafted coffee made from premium beans, roasted to
+            perfection.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-img src="assets/Pastries.jpg" alt="Delicious Pastries"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Delicious Pastries</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Try our freshly baked pastries, perfect for pairing with your
+            coffee.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
