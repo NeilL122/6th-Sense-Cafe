@@ -1,17 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> </ion-title>
+    <img
+      src="assets/6th Sense Cafe Home.jpg"
+      alt="Logo"
+      style="
+        width: 200px;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      "
+    />
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
+    <ion-toolbar> </ion-toolbar>
+
+    <h2>Welcome!</h2>
+    <!-- <ion-button (click)="logout()">Logout</ion-button> -->
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="main-container">
+    <div class="jumbotron">
+      <h2>Welcome to 6th Sense Cafe!</h2>
+      <button class="menu-button" routerLink="/tabs/tab2">
+        View Our Menu!
+      </button>
+    </div>
+
+    <div class="about-us">
+      <h2>About Us</h2>
+      <p>
+        At 6th Sense Cafe, we believe in the power of community and the joy of
+        sharing a great cup of coffee! For more information about us, visit our
+        Information page to learn more.
+      </p>
+    </div>
+
+    <!-- <div class="specials">
+    <h2>Today's Specials</h2>
+    <p>
+      Check out our daily specials and seasonal offerings! Visit our Menu page to see what's brewing today.
+    </p>
+   </div> -->
+  </div>
 </ion-content>

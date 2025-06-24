@@ -1,0 +1,55 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.jumbotron,
+.about-us,
+.specials {
+  flex: 1;
+  background-color: #d2c265;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.jumbotron h2,
+.about-us h2 {
+  margin-top: 0;
+}
+
+.menu-button {
+  background-color: #f4b500;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .jumbotron,
+  .about-us {
+    width: 100%;
+  }
+}
+
+ion-content {
+  --background: #fbec96; 
+}
+
+ion-header {
+  background-color: #d6c564 !important;
+}
