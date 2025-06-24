@@ -1,3 +1,18 @@
   ion-content {
     --background: #fbec96;
+    --ion-safe-area-top: 0 !important;
   }
+
+  .logo-toolbar {
+  --min-height: 0px;
+  padding: 0 !important;
+}
+
+.header-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+  
