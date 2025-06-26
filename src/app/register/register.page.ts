@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,32 +9,29 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
   standalone: false,
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
 
-  registerData = {
-    fullName: '',
-    email: '',
-    password: '',
-  };
+  registerData = { fullName: '', email: '', password: '' };
 
-  constructor(private toastCtrl: ToastController, private router: Router) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private toastCtrl: ToastController, private router: Router, private authService: AuthService) {}
 
-  async onRegister() {
-    const toast = await this.toastCtrl.create({
-      message: `Thanks for registering, ${this.registerData.fullName}!`,
-      duration: 2000,
-      color: 'success',
+  onRegister() {
+    this.authService.register(this.registerData).subscribe(async (response) => {
+      const toast = await this.toastCtrl.create({
+        message: response.message,
+        duration: 2000,
+        color: 'success',
+      });
+      toast.present();
+
+      this.router.navigateByUrl('/home');
+    }, async (error) => {
+      const toast = await this.toastCtrl.create({
+        message: 'Registration failed!',
+        duration: 2000,
+        color: 'danger',
+      });
+      toast.present();
     });
-    toast.present();
-
-    // Reset form
-    this.registerData = { fullName: '', email: '', password: '' };
-
-    // Navigate to Home page
-    this.router.navigateByUrl('/home');
   }
-
 }

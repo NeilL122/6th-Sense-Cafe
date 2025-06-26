@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,28 +9,29 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
   standalone: false,
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
-   loginData = {
-    email: '',
-    password: '',
-  };
+  loginData = { email: '', password: '' };
 
-  constructor(private toastCtrl: ToastController, private router: Router) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private toastCtrl: ToastController, private router: Router, private authService: AuthService) {}
 
-  async onLogin() {
-    const toast = await this.toastCtrl.create({
-      message: `Welcome back, ${this.loginData.email}!`,
-      duration: 2000,
-      color: 'success',
+  onLogin() {
+    this.authService.login(this.loginData).subscribe(async (response) => {
+      const toast = await this.toastCtrl.create({
+        message: response.message,
+        duration: 2000,
+        color: 'success',
+      });
+      toast.present();
+
+      this.router.navigateByUrl('/home');
+    }, async (error) => {
+      const toast = await this.toastCtrl.create({
+        message: 'Login failed!',
+        duration: 2000,
+        color: 'danger',
+      });
+      toast.present();
     });
-    toast.present();
-
-    this.loginData = { email: '', password: '' };
-
-    this.router.navigateByUrl('/home');
   }
 }
