@@ -4,12 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  cart: any[] = [];
+  private cart: any[] = [];
 
-  constructor() {}
+  constructor() {
+    const storedCart = localStorage.getItem('cart');
+    this.cart = storedCart ? JSON.parse(storedCart) : [];
+  }
+
+  private saveCart() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
 
   addToCart(product: any) {
     this.cart.push(product);
+    this.saveCart();
   }
 
   getCart() {
@@ -18,6 +26,7 @@ export class CartService {
 
   clearCart() {
     this.cart = [];
+    this.saveCart();
     return this.cart;
   }
 

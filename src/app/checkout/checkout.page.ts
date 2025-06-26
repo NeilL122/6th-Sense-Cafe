@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../checkout.service';
 import { Router } from '@angular/router';
@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.page.scss'],
   standalone: false,  
 })
-export class CheckoutPage implements OnInit {
+export class CheckoutPage {
   total = 0;
   loading = false;
   errorMessage = '';
+  cartItems: any[] = [];
 
   constructor(
     private cartService: CartService,
@@ -20,7 +21,8 @@ export class CheckoutPage implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ionViewWillEnter(): void {
+    this.cartItems = this.cartService.getCart();
     this.total = this.cartService.getTotal();
   }
 
@@ -28,9 +30,7 @@ export class CheckoutPage implements OnInit {
     this.errorMessage = '';
     this.loading = true;
 
-    const cartItems = this.cartService.getCart();
-
-    if (cartItems.length === 0) {
+    if (this.cartItems.length === 0) {
       this.errorMessage = 'Your cart is empty.';
       this.loading = false;
       return;
@@ -38,21 +38,21 @@ export class CheckoutPage implements OnInit {
 
     const orderData = {
       userId: 1,
-      cartItems,
-      totalPrice: this.cartService.getTotal(),
+      cartItems: this.cartItems,
+      totalPrice: this.total,
     };
 
     this.checkoutService.placeOrder(orderData).subscribe({
-      next: (response: { orderId: number }) => {
+      next: (response: any) => {
         this.loading = false;
-        alert(`Your order totaling $${this.total} has been placed. Order ID: ${response.orderId}`);
+        alert(`Your order totaling $${this.total.toFixed(2)} has been placed. Order ID: ${response?.orderId || 'N/A'}`);
         this.cartService.clearCart();
         this.router.navigate(['/home']);
       },
       error: (error: any) => {
         this.loading = false;
         this.errorMessage = 'Failed to place order. Please try again later.';
-        console.error('Order error:', error);
+        console.error('Order placement error:', error);
       },
     });
   }
