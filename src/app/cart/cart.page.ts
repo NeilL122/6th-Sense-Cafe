@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
+import { Component } from '@angular/core';
+import { CartService } from '../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -7,33 +8,24 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./cart.page.scss'],
   standalone: false,
 })
-export class CartPage implements OnInit {
-
+export class CartPage {
   cart: any[] = [];
   total: number = 0;
 
-  constructor(private storage: Storage) {}
-
-  async ngOnInit() {
-    await this.storage.create();
-  }
+  constructor(private cartService: CartService, private router: Router) {}
 
   ionViewWillEnter() {
-    this.loadCart();
+    this.cart = this.cartService.getCart();
+    this.total = this.cartService.getTotal();
   }
 
-  async loadCart() {
-    const savedCart = await this.storage.get('cart');
-    if (savedCart) {
-      this.cart = savedCart;
-      this.total = this.cart.reduce((acc, item) => acc + item.price, 0);
-    }
-  }
-
-  async clearCart() {
+  clearCart() {
+    this.cartService.clearCart();
     this.cart = [];
     this.total = 0;
-    await this.storage.remove('cart');
   }
 
+  proceedToCheckout() {
+    this.router.navigate(['/checkout']);
+  }
 }

@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-card class="checkout-card">
+    <ion-card-header class="ion-text-center">
+      <ion-card-subtitle style="font-size: 1.1rem; color: var(--ion-color-medium);">Order Summary</ion-card-subtitle>
+      <ion-card-title color="warning" style="font-size: 2rem;">
+        ${{ total.toFixed(2) }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button
+        color="warning"
+        expand="block"
+        size="large"
+        shape="round"
+        (click)="submitOrder()"
+        [disabled]="loading"
+        class="place-order-btn"
+      >
+        <ion-icon name="bag-check-outline" slot="start"></ion-icon>
+        {{ loading ? 'Placing Order...' : 'Place Order' }}
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        color="medium"
+        routerLink="/cart"
+        shape="round"
+        class="back-to-cart-btn"
+      >
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Back to Cart
+      </ion-button>
+
+      <ion-text color="danger" *ngIf="errorMessage">
+        <p class="ion-padding-top">{{ errorMessage }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

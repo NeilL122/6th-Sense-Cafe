@@ -18,4 +18,8 @@ export class AuthService {
   login(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, data);
   }
+
+    placeOrder(orderData: any) {
+    return this.http.post(`${this.baseUrl}/checkout`, orderData);
+  }
 }

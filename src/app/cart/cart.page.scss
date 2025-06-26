@@ -1,0 +1,13 @@
+.cart-summary-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+ion-item {
+  --inner-padding-end: 12px;
+}
+
+ion-button {
+  margin-top: 1rem;
+  font-weight: 600;
+}

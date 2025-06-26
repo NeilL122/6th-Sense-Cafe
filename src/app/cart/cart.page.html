@@ -1,33 +1,60 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
+  <ion-toolbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button class="home" color="light" [routerLink]="['/tabs/tab2']">
-  <ion-icon color="warning" name="home-outline" slot="start"></ion-icon>
-  Home
-</ion-button>
+<ion-content class="ion-padding">
 
-
-  <ion-list>
-    <ion-item *ngFor="let item of cart">
-      <ion-thumbnail slot="start">
-        <img [src]="item.image" />
-      </ion-thumbnail>
-      <ion-label>{{ item.name }}</ion-label>
-      <ion-note slot="end">${{ item.price }}</ion-note>
-    </ion-item>
-  </ion-list>
-
-  <ion-item lines="full">
-    <ion-label><strong>Total</strong></ion-label>
-    <ion-note slot="end"><strong>${{ total }}</strong></ion-note>
-  </ion-item>
-
-  <ion-button expand="block" color="danger" (click)="clearCart()">
-    Clear Cart
+  <ion-button color="light" routerLink="/tabs/tab2" shape="round">
+    <ion-icon name="home-outline" slot="start" color="warning"></ion-icon>
+    Home
   </ion-button>
 
-  
+  <ion-card class="cart-summary-card" *ngIf="cart.length > 0">
+    <ion-card-header>
+      <ion-card-title>Your Cart</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of cart">
+          <ion-thumbnail slot="start">
+            <img [src]="item.image" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ item.name }}</h2>
+            <p>${{ item.price.toFixed(2) }}</p>
+          </ion-label>
+          <ion-note slot="end">${{ item.price.toFixed(2) }}</ion-note>
+        </ion-item>
+      </ion-list>
+
+      <ion-item lines="full" class="ion-margin-top">
+        <ion-label><strong>Total</strong></ion-label>
+        <ion-note slot="end"><strong>${{ total.toFixed(2) }}</strong></ion-note>
+      </ion-item>
+
+      <ion-button expand="block" color="light" shape="round" (click)="clearCart()">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Clear Cart
+      </ion-button>
+
+      <ion-button expand="block" color="warning" shape="round" (click)="proceedToCheckout()">
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+        Proceed to Checkout
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="cart.length === 0">
+    <ion-card-content class="ion-text-center">
+      <ion-icon name="cart-outline" size="large" color="medium"></ion-icon>
+      <p class="ion-padding-top">Your cart is empty.</p>
+      <ion-button color="primary" routerLink="/tabs/tab2" shape="round" class="ion-margin-top">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Continue Shopping
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
